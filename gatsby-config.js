@@ -37,8 +37,14 @@ module.exports = {
         baseUrl: "codestaffio.wpengine.com",
         protocol: "http",
         hostingWPCOM: false,
-        useACF: true,
-        // excludedRoutes: ["**/themes", "**/settings"],
+        useACF: false,
+      },
+    },
+    {
+      resolve: `gatsby-wordpress-inline-images`,
+      options: {
+        baseUrl: `codestaffio.wpengine.com`,
+        protocol: `http`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
