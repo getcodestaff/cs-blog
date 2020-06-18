@@ -10,10 +10,13 @@ import {
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Blog from "../components/blog"
+import RecentBlog from "../components/recentBlog"
 
 const IndexPage = props => {
   const data = props.data.allWordpressPost.edges
-  console.log(data)
+  const data2 = props.data.recentposts.edges
+
+  console.log(data2)
 
   return (
     <Layout>
@@ -99,6 +102,30 @@ const IndexPage = props => {
                   </div>
                 </div>
               </div>
+              <div className="blog__all">
+                <div className="blog__all-intro">
+                  <h2 className="u-uppercase">
+                    Read the most recent
+                    <br />
+                    Web Development articles
+                  </h2>
+                  <p className="p--hg u-color-gray-3 u-ls-0">
+                    This space is all about you, from Ruby to PHP!
+                  </p>
+                </div>
+                <div className="row blog__all-main">
+                  {data2.map(blog => (
+                    <RecentBlog
+                      key={blog.node.id}
+                      mainImage={blog.node.featured_media}
+                      title={blog.node.title}
+                      author={blog.node.author.name}
+                      excerpt={blog.node.excerpt}
+                      slug={blog.node.slug}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -111,7 +138,36 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query {
-    allWordpressPost {
+    allWordpressPost(
+      filter: {
+        categories: { elemMatch: { name: { nin: "Web Development" } } }
+      }
+    ) {
+      edges {
+        node {
+          id
+          slug
+          title
+          content
+          excerpt
+          author {
+            name
+          }
+          featured_media {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    recentposts: allWordpressPost(
+      filter: { categories: { elemMatch: { name: { eq: "Web Development" } } } }
+    ) {
       edges {
         node {
           id

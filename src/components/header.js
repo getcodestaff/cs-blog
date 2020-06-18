@@ -1,11 +1,23 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import { Link } from "gatsby"
+
 import logo from "../images/logo.png"
 
 const Header = () => {
+  const [mobileNav, setMobileNav] = React.useState(false)
+
+  const headerMenu = React.useRef()
+
+  React.useEffect(() => {
+    if (mobileNav) {
+      headerMenu.current.style.display = "block"
+    } else {
+      headerMenu.current.style.display = "none"
+    }
+  })
+
   return (
-    <header className="header">
+    <header className={`header ${mobileNav && "is-open"}`}>
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
@@ -16,7 +28,17 @@ const Header = () => {
                 </Link>
               </div>
               <nav className="header__group header__nav">
-                <ul className="header__menu">
+                <ul
+                  className="header__menu"
+                  ref={headerMenu}
+                  // style={{
+                  //   height: 288,
+                  //   paddingTop: 18.036,
+                  //   marginTop: 0,
+                  //   paddingBottom: 18.036,
+                  //   marginBottom: 0,
+                  // }}
+                >
                   <li>
                     <a href="#">WHY</a>
                   </li>
@@ -39,9 +61,11 @@ const Header = () => {
                     <a href="#">CONTACT US</a>
                   </li>
                 </ul>
+
                 <div className="header__btns">
                   <a href="#" className="btn">
-                    HIRE<span className="d-none d-sm-inline"> TOP TALENT</span>
+                    HIRE
+                    <span className="d-none d-sm-inline"> TOP TALENT</span>
                   </a>
                   <a href="#" className="btn btn--drk">
                     APPLY
@@ -53,7 +77,10 @@ const Header = () => {
                 <a href="#" className="btn btn--white">
                   LOG IN
                 </a>
-                <button className="header__btn">
+                <button
+                  className="header__btn"
+                  onClick={() => setMobileNav(!mobileNav)}
+                >
                   <span className="header__btn-line"></span>
                   <span className="header__btn-line"></span>
                   <span className="header__btn-line"></span>
@@ -65,14 +92,6 @@ const Header = () => {
       </div>
     </header>
   )
-}
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
 }
 
 export default Header
