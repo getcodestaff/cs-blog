@@ -40,13 +40,6 @@ module.exports = {
         useACF: false,
       },
     },
-    {
-      resolve: `gatsby-wordpress-inline-images`,
-      options: {
-        baseUrl: `codestaffio.wpengine.com`,
-        protocol: `http`,
-      },
-    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
