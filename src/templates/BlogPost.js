@@ -80,14 +80,14 @@ const BlogPost = props => {
                     </div>
                     <div className="sidebar__group">
                       <div className="article__author">
-                        <div
+                        {/* <div
                           className="article__author-img"
                           style={{
                             backgroundImage: `url(${post.author.avatar_urls.wordpress_24})`,
                           }}
                         >
-                          &nbsp;
-                        </div>
+                        </div> */}
+                        &nbsp;
                         <h3 className="u-font-main u-color-black article__author-title">
                           <a href="#">{post.author.name}</a>
                         </h3>
@@ -131,9 +131,9 @@ export const postQuery = graphql`
       author {
         name
         description
-        avatar_urls {
-          wordpress_24
-        }
+        # avatar_urls {
+        #   wordpress_24
+        # }
       }
       featured_media {
         localFile {
