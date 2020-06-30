@@ -105,6 +105,27 @@ const BlogPost = props => {
                         </div> */}
                       </div>
                     </div>
+                    <div className="sidebar__group mt-5">
+                      <h4 className="h4--lg text-center u-color-secondary u-font-titles u-weight-smb mb-4">
+                        Explore Ideas
+                      </h4>
+                      <div className="article__tags">
+                        <a href="#">UX</a>
+                        <a href="#">Web Design</a>
+                        <a href="#">Mobile Design</a>
+                        <a href="#">Web</a>
+                        <a href="#">Development</a>
+                        <a href="#">Photography</a>
+                        <a href="#">Video</a>
+                        <a href="#">Production and Editing</a>
+                        <a href="#">3D Design</a>
+                        <a href="#">Audio & Sound Design</a>
+                        <a href="#">WordPress</a>
+                        <a href="#">Graphic Design</a>
+                        <a href="#">Marketing</a>
+                        <a href="#">Freelancing</a>
+                      </div>
+                    </div>
                   </aside>
                 </div>
               </div>
@@ -155,6 +176,7 @@ export const postQuery = graphql`
             name
           }
           featured_media {
+            source_url
             localFile {
               childImageSharp {
                 fluid {
