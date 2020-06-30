@@ -14,7 +14,7 @@ import RecentBlog from "../components/recentBlog"
 
 const IndexPage = props => {
   const data = props.data.allWordpressPost.edges
-  // const data2 = props.data.recentposts.edges
+  const data2 = props.data.recentposts.edges
 
   return (
     <Layout>
@@ -100,7 +100,7 @@ const IndexPage = props => {
                   </div>
                 </div>
               </div>
-              {/* <div className="blog__all">
+              <div className="blog__all">
                 <div className="blog__all-intro">
                   <h2 className="u-uppercase">
                     Read the most recent
@@ -123,7 +123,7 @@ const IndexPage = props => {
                     />
                   ))}
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
@@ -136,7 +136,12 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query {
-    allWordpressPost(sort: { fields: date }) {
+    allWordpressPost(
+      sort: { fields: date }
+      filter: {
+        categories: { elemMatch: { name: { nin: "Web Development" } } }
+      }
+    ) {
       edges {
         node {
           id
@@ -159,30 +164,30 @@ export const pageQuery = graphql`
         }
       }
     }
-    # recentposts: allWordpressPost(
-    #   filter: { categories: { elemMatch: { name: { eq: "Web Development" } } } }
-    # ) {
-    #   edges {
-    #     node {
-    #       id
-    #       slug
-    #       title
-    #       content
-    #       excerpt
-    #       author {
-    #         name
-    #       }
-    #       featured_media {
-    #         localFile {
-    #           childImageSharp {
-    #             fluid {
-    #               ...GatsbyImageSharpFluid
-    #             }
-    #           }
-    #         }
-    #       }
-    #     }
-    #   }
-    # }
+    recentposts: allWordpressPost(
+      filter: { categories: { elemMatch: { name: { eq: "Web Development" } } } }
+    ) {
+      edges {
+        node {
+          id
+          slug
+          title
+          content
+          excerpt
+          author {
+            name
+          }
+          featured_media {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `
