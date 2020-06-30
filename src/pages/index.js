@@ -138,9 +138,7 @@ export const pageQuery = graphql`
   query {
     allWordpressPost(
       sort: { fields: date }
-      filter: {
-        categories: { elemMatch: { name: { nin: "Web Development" } } }
-      }
+      filter: { categories: { elemMatch: { name: { eq: "Web Development" } } } }
     ) {
       edges {
         node {
@@ -165,7 +163,9 @@ export const pageQuery = graphql`
       }
     }
     recentposts: allWordpressPost(
-      filter: { categories: { elemMatch: { name: { eq: "Web Development" } } } }
+      filter: {
+        categories: { elemMatch: { name: { nin: "Web Development" } } }
+      }
     ) {
       edges {
         node {
