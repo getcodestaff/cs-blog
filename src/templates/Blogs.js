@@ -171,7 +171,7 @@ export const pageQuery = graphql`
     }
     featuredPosts: allWordpressPost(
       sort: { fields: date }
-      skip: $skip
+      # skip: 3
       limit: 3
       filter: { categories: { elemMatch: { name: { eq: "Web Development" } } } }
     ) {
