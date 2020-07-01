@@ -52,7 +52,7 @@ const Header = () => {
                     <a href="#">COMMUNITY</a>
                   </li>
                   <li>
-                    <Link to="/">BLOG</Link>
+                    <Link to="/blogs">BLOG</Link>
                   </li>
                   <li>
                     <a href="#">ABOUT US</a>

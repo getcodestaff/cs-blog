@@ -1,5 +1,6 @@
 const path = require(`path`)
 const { slash } = require(`gatsby-core-utils`)
+const { paginate } = require('gatsby-awesome-pagination')
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
@@ -42,6 +43,13 @@ exports.createPages = async ({ graphql, actions }) => {
   // We want to create a detailed page for each
   // post node. We'll just use the WordPress Slug for the slug.
   // The Post ID is prefixed with 'POST_'
+  paginate({
+    createPage, // The Gatsby `createPage` function
+    items: allWordpressPost.edges, // An array of objects
+    itemsPerPage: 8, // How many items you want per page
+    pathPrefix: '/blogs', // Creates pages like `/blog`, `/blog/2`, etc
+    component: path.resolve('src/templates/Blogs.js'), // Just like `createPage()`
+  })
   allWordpressPost.edges.forEach(edge => {
     createPage({
       path: `/blog/${edge.node.slug}/`,
