@@ -6,10 +6,13 @@ const blog = ({ mainImage, title, author, excerpt, slug }) => {
   return (
     <div className="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
       <article className="article-box article-box--hg">
-        <Link to={`/blog/${slug}`} className="article-box__img-wrapper">
+        <Link
+          to={`/blog/${slug}?post=featured`}
+          className="article-box__img-wrapper"
+        >
           {mainImage && (
             <Img
-              fluid={mainImage.localFile.childImageSharp.fluid}
+              fixed={mainImage.localFile.childImageSharp.fixed}
               className="article-box__img"
               alt="Article image"
             />
@@ -17,7 +20,7 @@ const blog = ({ mainImage, title, author, excerpt, slug }) => {
         </Link>
         <div className="article-box__copy">
           <h4 className="h4--lg article-box__title">
-            <Link to={`/blog/${slug}`}>{title}</Link>
+            <Link to={`/blog/${slug}?post=featured`}>{title}</Link>
           </h4>
           <p
             className="article-box__text"

@@ -9,6 +9,8 @@ const BlogPost = props => {
   const post = props.data.wordpressPost
   const recentPosts = props.data.recentPosts.edges
 
+  console.log(props)
+
   return (
     <Layout>
       <SEO title="Web Development Blog for Freelancers: Tips & Tricks for Programmers" />
@@ -35,6 +37,19 @@ const BlogPost = props => {
                   alt="Article banner image"
                   className="banner__img"
                 />
+                {/* {props.location.search.length > 0 ? (
+                  <Img
+                    fluid={post.featured_media.localFile.childImageSharp.fluid}
+                    alt="Article banner image"
+                    className="banner__img"
+                  />
+                ) : (
+                  <Img
+                    fixed={post.featured_media.localFile.childImageSharp.fixed}
+                    alt="Article banner image"
+                    className="banner__img"
+                  />
+                )} */}
               </div>
             </div>
           </div>
@@ -60,9 +75,9 @@ const BlogPost = props => {
                             key={post.node.id}
                           >
                             <Img
-                              fluid={
+                              fixed={
                                 post.node.featured_media.localFile
-                                  .childImageSharp.fluid
+                                  .childImageSharp.fixed
                               }
                               alt="Article image"
                               className="article-box__img"
@@ -159,8 +174,11 @@ export const postQuery = graphql`
       featured_media {
         localFile {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 1110, maxHeight: 305, quality: 100) {
               ...GatsbyImageSharpFluid
+            }
+            fixed(width: 1110, height: 305, quality: 100) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
@@ -179,8 +197,8 @@ export const postQuery = graphql`
             source_url
             localFile {
               childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
+                fixed(width: 79, height: 76) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }

@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Link from "gatsby-link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faTwitter,
@@ -16,8 +15,6 @@ import Pagination from "../components/pagination"
 
 const Blogs = props => {
   const { data, pathContext } = props
-
-  console.log(props)
 
   const allPosts = data.allWordpressPost.edges
   const feturedPosts = data.featuredPosts.edges
@@ -160,7 +157,7 @@ export const pageQuery = graphql`
           featured_media {
             localFile {
               childImageSharp {
-                fluid {
+                fluid(maxHeight: 253) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -188,8 +185,8 @@ export const pageQuery = graphql`
           featured_media {
             localFile {
               childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
+                fixed(width: 348, height: 195) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }
