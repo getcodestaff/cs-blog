@@ -9,8 +9,6 @@ const BlogPost = props => {
   const post = props.data.wordpressPost
   const recentPosts = props.data.recentPosts.edges
 
-  console.log(props)
-
   return (
     <Layout>
       <SEO title="Web Development Blog for Freelancers: Tips & Tricks for Programmers" />

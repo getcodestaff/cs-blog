@@ -19,6 +19,8 @@ const Blogs = props => {
   const allPosts = data.allWordpressPost.edges
   const feturedPosts = data.featuredPosts.edges
 
+  // console.log(allPosts)
+
   return (
     <Layout>
       <SEO title="Web Development Blog for Freelancers: Tips & Tricks for Programmers" />
@@ -185,7 +187,7 @@ export const pageQuery = graphql`
           featured_media {
             localFile {
               childImageSharp {
-                fixed(width: 348, height: 195) {
+                fixed(width: 418, height: 195) {
                   ...GatsbyImageSharpFixed
                 }
               }
